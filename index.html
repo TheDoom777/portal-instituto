@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,32 +12,32 @@
 
     <link rel="stylesheet" href="estilos.css">
 
-  
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <!-- ONESIGNAL: NOTIFICACIONES PUSH -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
 
-  window.OneSignalDeferred.push(async function(OneSignal) {
-    try {
-      await OneSignal.init({
-        appId: "72034253-250b-4fb4-ad99-70e0eef8605b",
-        serviceWorkerPath: "portal-instituto/OneSignalSDKWorker.js",
-        serviceWorkerParam: {
-          scope: "/portal-instituto/"
+      window.OneSignalDeferred.push(async function (OneSignal) {
+        try {
+          await OneSignal.init({
+            appId: "d1a88211-f2f1-4f67-b452-67864e6d99a0",
+            safari_web_id: "web.onesignal.auto.4924b4f0-134c-425c-876d-dc71d8371c02",
+            serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
+            serviceWorkerParam: {
+              scope: "/portal-instituto/"
+            },
+            notifyButton: {
+              enable: true
+            }
+          });
+
+          console.log("OneSignal se inicializó correctamente.");
+        } catch (error) {
+          console.error("Error al inicializar OneSignal:", error);
         }
       });
-
-      window.oneSignalInstance = OneSignal;
-      console.log("OneSignal se inicializó correctamente.");
-
-    } catch (error) {
-      console.error("Error al inicializar OneSignal:", error);
-    }
-  });
-</script>
-
-
+    </script>
 </head>
 
 <body>
@@ -49,12 +50,13 @@
                 <img src="img/escudo.png"
                      alt="Escudo del Instituto"
                      class="escudo">
-			</a>
+            </a>
 
-                <div class="identidad-texto">
-                    <h1>Instituto 4 de Septiembre de 1964</h1>
-                    <p>Portal Informativo Institucional</p>
-                </div>
+            <div class="identidad-texto">
+                <h1>Instituto 4 de Septiembre de 1964</h1>
+                <p>Portal Informativo Institucional</p>
+            </div>
+
         </div>
     </header>
 
@@ -110,7 +112,7 @@
             </div>
         </section>
 
-        <!-- PRÓXIMO EVENTO: ANCHO COMPLETO -->
+        <!-- PRÓXIMO EVENTO -->
         <section id="proximo-evento" class="seccion">
             <div class="titulo-seccion">
                 <div>
@@ -141,215 +143,209 @@
                         tendremos más información!
                     </p>
 
-                   
-<div class="datos-evento">
-    <p><span>▦</span> Fecha: 23 de octubre</p>
-    <p><span>⌖</span> Lugar: instalaciones del instituto</p>
-</div>
+                    <div class="datos-evento">
+                        <p><span>▦</span> Fecha: 23 de octubre</p>
+                        <p><span>⌖</span> Lugar: instalaciones del instituto</p>
+                    </div>
 
-<button type="button"
-        id="activar-notificaciones"
-        class="boton-notificacion">
-    🔔 Activar notificaciones
-</button>
-
-<p id="estado-notificaciones" role="status" aria-live="polite"></p>
-
-
-         
+                    <!-- El botón personalizado fue eliminado.
+                         OneSignal mostrará su botón flotante. -->
                 </div>
             </article>
         </section>
 
         <!-- EVENTOS INSTITUCIONALES -->
-      <section id="eventos" class="seccion">
+        <section id="eventos" class="seccion">
             <div class="titulo-seccion">
                 <div>
                     <span class="subtitulo">ACTUALIDAD</span>
                     <h2>Eventos institucionales</h2>
                 </div>
+
                 <span class="texto-auxiliar">Lo que sucede en nuestro instituto</span>
             </div>
 
-            
-<div class="rejilla-eventos">
-	
-	   <!-- EVENTO 1: Dia del maestro -->
-    <a href="eventos/Maestros.html" class="tarjeta">
-        <img src="img/Reunión nocturna entre amigas.png"
-             alt="Maestros del 4 de septiembre">
+            <div class="rejilla-eventos">
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">RECONOCIMIENTO ACADÉMICO</span>
-          <h3>Nuestros Maestros en su dia</h3>
-            <p>
-                Rendimos homenaje a los docentes que, con su dedicación y compromiso, 
-				contribuyen a la educación y formación de nuestros estudiantes.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-      </div>
-    </a>
+                <!-- EVENTO 1: DÍA DEL MAESTRO -->
+                <a href="eventos/Maestros.html" class="tarjeta">
+                    <img src="img/Reunión nocturna entre amigas.png"
+                         alt="Maestros del 4 de septiembre">
 
-    <!-- EVENTO 2: Desfile -->
-    <a href="eventos/FiestaPatria.html" class="tarjeta">
-        <img src="img/Ceremonia de banderas bajo cielo azul.png"
-             alt="Fiestas Patrias">
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">RECONOCIMIENTO ACADÉMICO</span>
+                        <h3>Nuestros Maestros en su dia</h3>
+                        <p>
+                            Rendimos homenaje a los docentes que, con su dedicación y compromiso,
+                            contribuyen a la educación y formación de nuestros estudiantes.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">NUESTRO INSTITUTO</span>
-            <h3>Celebramos nuestras fiestas patrias</h3>
-            <p>
-               Celebramos nuestro 205 año de independencia con alegria
-          </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
+                <!-- EVENTO 2: DESFILE -->
+                <a href="eventos/FiestaPatria.html" class="tarjeta">
+                    <img src="img/Ceremonia de banderas bajo cielo azul.png"
+                         alt="Fiestas Patrias">
 
- 
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">NUESTRO INSTITUTO</span>
+                        <h3>Celebramos nuestras fiestas patrias</h3>
+                        <p>
+                            Celebramos nuestro 205 año de independencia con alegria.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-    <!-- EVENTO 3: ANIVERSARIO -->
-    <a href="eventos/aniversario.html" class="tarjeta">
-        <img src="img/Festival de Bienvenida Western 47° Aniversario.png"
-             alt="">
+                <!-- EVENTO 3: ANIVERSARIO -->
+                <a href="eventos/aniversario.html" class="tarjeta">
+                    <img src="img/Festival de Bienvenida Western 47° Aniversario.png"
+                         alt="Aniversario institucional">
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">HISTORIA INSTITUCIONAL</span>
-            <h3>¡Nuestro instituto celebra su 47 aniversario!</h3>
-            <p>
-               Celebramos 47 años de historia, educación y recuerdos, reconociendo
-			   a las generaciones que han formado parte de nuestra institución.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">HISTORIA INSTITUCIONAL</span>
+                        <h3>¡Nuestro instituto celebra su 47 aniversario!</h3>
+                        <p>
+                            Celebramos 47 años de historia, educación y recuerdos, reconociendo
+                            a las generaciones que han formado parte de nuestra institución.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-    <!-- EVENTO 4: Dia de la bandera -->
-    <a href="eventos/Diabandera.html" class="tarjeta">
-        <img src="img/Ceremonia escolar entre banderas y verdor.png"
-             alt="Di de la bandera">
+                <!-- EVENTO 4: DÍA DE LA BANDERA -->
+                <a href="eventos/Diabandera.html" class="tarjeta">
+                    <img src="img/Ceremonia escolar entre banderas y verdor.png"
+                         alt="Día de la bandera">
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">FIESTAS PATRIAS</span>
-            <h3>Dia de la bandera</h3>
-            <p>
-                Honramos nuestro pabellón nacional con respeto y patriotismo, 
-				fortaleciendo el amor por Honduras en nuestra comunidad educativa.
-          </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">FIESTAS PATRIAS</span>
+                        <h3>Dia de la bandera</h3>
+                        <p>
+                            Honramos nuestro pabellón nacional con respeto y patriotismo,
+                            fortaleciendo el amor por Honduras en nuestra comunidad educativa.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-    <!-- EVENTO 5: OLIMPIADAS DE MATEMÁTICAS -->
-    <a href="eventos/Olimpiadas.html" class="tarjeta">
-        <img src="img/Estudiantes en la Semana de Matemáticas.png"
-             alt="Representantes olimpiadas de matemáticas">
+                <!-- EVENTO 5: OLIMPIADAS DE MATEMÁTICAS -->
+                <a href="eventos/Olimpiadas.html" class="tarjeta">
+                    <img src="img/Estudiantes en la Semana de Matemáticas.png"
+                         alt="Representantes de las olimpiadas de matemáticas">
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">OLIMPIADAS</span>
-            <h3>Olimpiadas de matemáticas ronda departamental</h3>
-            <p>
-               Conoce a los estudiantes que representaron a nuestro instituto en la
-				segunda ronda departamental de las Olimpiadas de Matemáticas.
-          </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">OLIMPIADAS</span>
+                        <h3>Olimpiadas de matemáticas ronda departamental</h3>
+                        <p>
+                            Conoce a los estudiantes que representaron a nuestro instituto en la
+                            segunda ronda departamental de las Olimpiadas de Matemáticas.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-    <!-- EVENTO 6: DIA DEL INDIO -->
-    <a href="eventos/Diaindio.html" class="tarjeta">
-        <img src="img/Festival folclórico hondureño en el bosque.png"
-             alt="Estudiantes participando en actividades educativas">
+                <!-- EVENTO 6: DÍA DEL INDIO LEMPIRA -->
+                <a href="eventos/Diaindio.html" class="tarjeta">
+                    <img src="img/Festival folclórico hondureño en el bosque.png"
+                         alt="Estudiantes participando en actividades educativas">
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">CULTURA E HISTORIA</span>
-            <h3>Día del Indio Lempira</h3>
-            <p>
-                Recordamos el legado de nuestro héroe nacional, el Indio Lempira, 
-				y celebramos las raíces culturales y la identidad de Honduras.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
-	<!-- EVENTO 7: DIA DEL ARTE -->
-    <a href="eventos/Diadelarte.html" class="tarjeta">
-        <img src="img/Captura de pantalla 2026-10-12 214601.png"
-             alt="Estudiantes participando en actividades educativas">
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">CULTURA E HISTORIA</span>
+                        <h3>Día del Indio Lempira</h3>
+                        <p>
+                            Recordamos el legado de nuestro héroe nacional, el Indio Lempira,
+                            y celebramos las raíces culturales y la identidad de Honduras.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">CULTURA Y CREATIVIDAD</span>
-            <h3>Día del Arte</h3>
-            <p>
-               Destacamos el talento, la imaginación y la creatividad de nuestros 
-				estudiantes a través de sus expresiones artísticas y trabajos.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
-	<!-- EVENTO 8: DIA DE LA MADRE -->
-    <a href="eventos/diamadre.html" class="tarjeta">
-        <img src="img/Captura de pantalla 2026-10-15 224157.png"
-             alt="Estudiantes participando en actividades educativas">
+                <!-- EVENTO 7: DÍA DEL ARTE -->
+                <a href="eventos/Diadelarte.html" class="tarjeta">
+                    <img src="img/Captura de pantalla 2026-10-12 214601.png"
+                         alt="Estudiantes participando en actividades artísticas">
 
-      <div class="tarjeta-contenido">
-            <span class="categoria">CELEBRACIÓN ESPECIAL</span>
-            <h3>Dia de la madre</h3>
-            <p>
-                Celebramos con cariño y gratitud a todas las madres, reconociendo 
-				su amor, esfuerzo y dedicación en nuestras familias.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
-	<!-- EVENTO 9: VOTACIONES -->
-    <a href="eventos/elecciones.html" class="tarjeta">
-        <img src="img/Captura de pantalla 2026-10-15 224902.png"
-             alt="Estudiantes participando en el dia de la madre">
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">CULTURA Y CREATIVIDAD</span>
+                        <h3>Día del Arte</h3>
+                        <p>
+                            Destacamos el talento, la imaginación y la creatividad de nuestros
+                            estudiantes a través de sus expresiones artísticas y trabajos.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">PARTICIPACIÓN ESTUDIANTIL</span>
-            <h3>Elecciones del Gobierno Estudiantil</h3>
-            <p>
-                Nuestros estudiantes participaron en una jornada democrática, eligiendo
-				digitalmente a sus representantes mediante el uso de tablets.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
-	<!-- EVENTO 10: DIA DEL IDIOMA -->
-    <a href="eventos/diaidioma.html" class="tarjeta">
-        <img src="img/idioma/Captura de pantalla 2026-10-15 225448.png"
-             alt="Estudiantes participando en actividades educativas">
+                <!-- EVENTO 8: DÍA DE LA MADRE -->
+                <a href="eventos/diamadre.html" class="tarjeta">
+                    <img src="img/Captura de pantalla 2026-10-15 224157.png"
+                         alt="Celebración del Día de la Madre">
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">CULTURA Y LITERATURA</span>
-            <h3>Dia del idioma Español</h3>
-            <p>
-               Celebramos la riqueza de nuestro idioma, promoviendo la lectura, la escritura y el 
-				amor por la literatura como formas de expresar nuestras ideas y conocimientos.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
-	
-	<!-- EVENTO 11: DIA DEL PADRE -->
-	
-    <a href="eventos/diapadre.html" class="tarjeta">
-        <img src="img/Captura de pantalla 2026-10-12 214601.png"
-             alt="Estudiantes participando en actividades educativas">
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">CELEBRACIÓN ESPECIAL</span>
+                        <h3>Dia de la madre</h3>
+                        <p>
+                            Celebramos con cariño y gratitud a todas las madres, reconociendo
+                            su amor, esfuerzo y dedicación en nuestras familias.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
 
-        <div class="tarjeta-contenido">
-            <span class="categoria">CELEBRACIÓN FAMILIAR</span>
-            <h3>Dia del padre</h3>
-            <p>
-               Rendimos homenaje a los padres por su amor, esfuerzo y dedicación, reconociendo el
-			   importante papel que desempeñan en la vida de sus hijos y sus familias.
-            </p>
-            <span class="fecha">Ver evento completo →</span>
-        </div>
-    </a>
+                <!-- EVENTO 9: ELECCIONES -->
+                <a href="eventos/elecciones.html" class="tarjeta">
+                    <img src="img/Captura de pantalla 2026-10-15 224902.png"
+                         alt="Participación estudiantil en elecciones">
 
-</div>
-      </section>
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">PARTICIPACIÓN ESTUDIANTIL</span>
+                        <h3>Elecciones del Gobierno Estudiantil</h3>
+                        <p>
+                            Nuestros estudiantes participaron en una jornada democrática, eligiendo
+                            digitalmente a sus representantes mediante el uso de tablets.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
+
+                <!-- EVENTO 10: DÍA DEL IDIOMA -->
+                <a href="eventos/diaidioma.html" class="tarjeta">
+                    <img src="img/idioma/Captura de pantalla 2026-10-15 225448.png"
+                         alt="Actividades del Día del Idioma">
+
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">CULTURA Y LITERATURA</span>
+                        <h3>Dia del idioma Español</h3>
+                        <p>
+                            Celebramos la riqueza de nuestro idioma, promoviendo la lectura,
+                            la escritura y el amor por la literatura como formas de expresar
+                            nuestras ideas y conocimientos.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
+
+                <!-- EVENTO 11: DÍA DEL PADRE -->
+                <a href="eventos/diapadre.html" class="tarjeta">
+                    <img src="img/Captura de pantalla 2026-10-12 214601.png"
+                         alt="Celebración del Día del Padre">
+
+                    <div class="tarjeta-contenido">
+                        <span class="categoria">CELEBRACIÓN FAMILIAR</span>
+                        <h3>Dia del padre</h3>
+                        <p>
+                            Rendimos homenaje a los padres por su amor, esfuerzo y dedicación,
+                            reconociendo el importante papel que desempeñan en la vida de sus
+                            hijos y sus familias.
+                        </p>
+                        <span class="fecha">Ver evento completo →</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
 
         <!-- COMUNICADOS -->
         <section id="comunicados" class="seccion">
@@ -419,8 +415,12 @@
     <!-- PIE DE PÁGINA -->
     <footer class="pie-pagina">
         <div class="contenedor pie-contenido">
+
             <div class="pie-identidad">
-                <img src="img/escudo.png" alt="" class="escudo-pie">
+                <img src="img/escudo.png"
+                     alt=""
+                     class="escudo-pie">
+
                 <div>
                     <h2>Instituto 4 de Septiembre de 1964</h2>
                     <p>Portal Informativo Institucional</p>
@@ -430,57 +430,9 @@
             <p class="copyright">
                 © 2026 Instituto 4 de Septiembre de 1964
             </p>
+
         </div>
     </footer>
 
-
-
-<script>
-document.getElementById("activar-notificaciones")
-  .addEventListener("click", async function() {
-
-    const estado = document.getElementById("estado-notificaciones");
-    const boton = this;
-    const OneSignal = window.oneSignalInstance;
-
-    if (!OneSignal) {
-      estado.textContent =
-        "OneSignal todavía está cargando. Recarga la página e inténtalo de nuevo.";
-      return;
-    }
-
-    try {
-      if (!OneSignal.Notifications.isPushSupported()) {
-        estado.textContent =
-          "Este entorno no admite las notificaciones web. Abre el portal desde el icono de la pantalla de inicio.";
-        return;
-      }
-
-      boton.disabled = true;
-      estado.textContent = "Solicitando permiso de notificaciones...";
-
-      const permitido =
-        await OneSignal.Notifications.requestPermission();
-
-      if (permitido) {
-        estado.textContent =
-          "¡Permiso concedido! Las notificaciones están habilitadas.";
-      } else {
-        estado.textContent =
-          "No se concedió el permiso. Revisa los ajustes de notificaciones del dispositivo.";
-      }
-
-    } catch (error) {
-      console.error("Error al solicitar permiso:", error);
-
-      estado.textContent =
-        "No se pudo activar. Revisa la consola y la configuración de OneSignal.";
-
-    } finally {
-      boton.disabled = false;
-    }
-  });
-</script>
 </body>
 </html>
-
