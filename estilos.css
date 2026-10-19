@@ -1,0 +1,833 @@
+
+/* =========================================
+   1. COLORES Y CONFIGURACIÓN GENERAL
+========================================= */
+
+:root {
+    --azul: #1b3d68;
+    --azul-oscuro: #142f50;
+    --azul-hover: #294d79;
+    --azul-claro: #eaf1f9;
+    --acento: #3d79ba;
+    --fondo: #f5f7fa;
+    --blanco: #ffffff;
+    --texto: #253348;
+    --gris: #728096;
+    --borde: #e1e7ef;
+    --radio: 12px;
+    --sombra: 0 4px 18px rgba(25, 48, 78, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.contenedor {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+/* =========================================
+   2. ENCABEZADO Y ESCUDO
+========================================= */
+
+.encabezado {
+    background: var(--blanco);
+}
+
+.encabezado-contenido {
+    min-height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.identidad {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-width: 0;
+}
+
+.escudo {
+    width: 76px;
+    height: 82px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.identidad-texto h1 {
+    font-size: clamp(17px, 2vw, 25px);
+    color: var(--azul);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.identidad-texto p {
+    margin-top: 5px;
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.boton-login {
+    background: var(--azul);
+    color: var(--blanco);
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.boton-login:hover {
+    background: var(--azul-hover);
+}
+
+/* =========================================
+   3. BANNER INSTITUCIONAL
+========================================= */
+
+.banner {
+    width: 100%;
+    height: 310px;
+    position: relative;
+    overflow: hidden;
+    background: #dbe5ef;
+}
+
+.banner > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 48%;
+}
+
+.banner-capa {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: end;
+    background: linear-gradient(
+        to top,
+        rgba(12, 31, 54, 0.83),
+        rgba(12, 31, 54, 0.12) 75%
+    );
+}
+
+.banner-texto {
+    color: var(--blanco);
+    padding-bottom: 28px;
+}
+
+.banner-texto > span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    color: #d7e8fb;
+}
+
+.banner-texto h2 {
+    font-size: clamp(23px, 3.2vw, 35px);
+    line-height: 1.25;
+    max-width: 680px;
+    margin: 5px 0;
+}
+
+.banner-texto p {
+    font-size: 14px;
+    color: #edf3fa;
+}
+
+/* =========================================
+   4. MENÚ AZUL DE ANCHO COMPLETO
+========================================= */
+
+.navegacion {
+    width: 100%;
+    background: var(--azul);
+    color: var(--blanco);
+}
+
+.menu {
+    display: flex;
+    align-items: stretch;
+    min-height: 59px;
+    gap: 0;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    border-bottom: 3px solid transparent;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-bottom-color: #a8c9ed;
+}
+
+.menu a.activo {
+    background: rgba(255, 255, 255, 0.09);
+    border-bottom-color: #a8c9ed;
+}
+
+/* =========================================
+   5. ÁREA PRINCIPAL
+========================================= */
+
+.contenido-principal {
+    padding-top: 32px;
+    padding-bottom: 45px;
+}
+
+.seccion {
+    margin-bottom: 42px;
+    scroll-margin-top: 20px;
+}
+
+/* =========================================
+   6. BIENVENIDA
+========================================= */
+
+.bienvenida {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 31px 34px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 38px;
+    box-shadow: var(--sombra);
+}
+
+.etiqueta,
+.subtitulo {
+    display: block;
+    color: var(--acento);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    margin-bottom: 6px;
+}
+
+.bienvenida h2 {
+    font-size: clamp(23px, 3vw, 31px);
+    line-height: 1.3;
+    color: var(--azul-oscuro);
+    max-width: 700px;
+    margin-bottom: 12px;
+}
+
+.bienvenida p {
+    font-size: 14px;
+    color: var(--gris);
+    max-width: 700px;
+    margin-bottom: 21px;
+}
+
+.boton-principal {
+    display: inline-block;
+    background: var(--azul);
+    color: var(--blanco);
+    padding: 11px 18px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+.boton-principal:hover {
+    background: var(--azul-hover);
+}
+
+.bienvenida-icono {
+    min-height: 160px;
+    border-radius: 10px;
+    background: var(--azul-claro);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: var(--azul);
+    border: 1px solid #dce7f4;
+}
+
+.bienvenida-icono span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.bienvenida-icono strong {
+    font-size: 27px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   7. TÍTULOS DE LAS SECCIONES
+========================================= */
+
+.titulo-seccion {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 19px;
+}
+
+.titulo-seccion h2 {
+    font-size: 25px;
+    line-height: 1.3;
+    color: var(--azul-oscuro);
+}
+
+.texto-auxiliar {
+    color: var(--gris);
+    font-size: 12px;
+}
+
+.estado-evento {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gris);
+    font-size: 12px;
+    white-space: nowrap;
+    padding-bottom: 5px;
+}
+
+.punto {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #299768;
+}
+
+/* =========================================
+   8. EVENTO DESTACADO
+========================================= */
+
+.evento-destacado {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    box-shadow: var(--sombra);
+}
+
+.evento-imagen {
+    min-height: 300px;
+    background: #dce6f0;
+}
+
+.evento-imagen img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+}
+
+.evento-informacion {
+    padding: 30px;
+    align-self: center;
+}
+
+.categoria {
+    display: inline-block;
+    color: var(--acento);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 9px;
+}
+
+.evento-informacion h3 {
+    color: var(--azul-oscuro);
+    font-size: 25px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.descripcion {
+    color: var(--gris);
+    font-size: 13px;
+    margin-bottom: 19px;
+}
+
+.datos-evento {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 23px;
+}
+
+.datos-evento p {
+    color: var(--texto);
+    font-size: 12px;
+}
+
+.datos-evento span {
+    color: var(--acento);
+    font-weight: 700;
+    margin-right: 7px;
+}
+
+.boton-secundario {
+    display: inline-block;
+    border: 1px solid #cbd9e9;
+    color: var(--azul);
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.boton-secundario:hover {
+    background: var(--azul-claro);
+}
+
+/* =========================================
+   9. TARJETAS DE EVENTOS
+========================================= */
+
+.rejilla-eventos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.tarjeta {
+    display: block;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 25px rgba(25, 48, 78, 0.10);
+}
+
+.tarjeta > img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+}
+
+.tarjeta-contenido {
+    padding: 19px;
+}
+
+.tarjeta-contenido h3 {
+    font-size: 17px;
+    color: var(--azul-oscuro);
+    line-height: 1.4;
+    margin-bottom: 9px;
+}
+
+.tarjeta-contenido p {
+    color: var(--gris);
+    font-size: 12px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.fecha {
+    color: var(--gris);
+    font-size: 10px;
+}
+
+/* =========================================
+   10. GALERÍA FOTOGRÁFICA
+========================================= */
+
+.rejilla-galeria {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.rejilla-galeria img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: #e1e7ef;
+    transition: transform 0.2s;
+}
+
+.rejilla-galeria img:hover {
+    transform: translateY(-3px);
+}
+
+.nota {
+    font-size: 11px;
+    color: var(--gris);
+    margin-top: 12px;
+}
+
+/* =========================================
+   11. COMUNICADOS
+========================================= */
+
+.rejilla-comunicados {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.comunicado {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+    padding: 22px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.comunicado-icono {
+    width: 39px;
+    height: 39px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--azul-claro);
+    color: var(--azul);
+    border-radius: 9px;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.comunicado h3 {
+    color: var(--azul-oscuro);
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.comunicado p {
+    color: var(--gris);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   12. PRESENTACIÓN INSTITUCIONAL
+========================================= */
+
+.franja-institucion {
+    background: var(--azul);
+    color: var(--blanco);
+    border-radius: var(--radio);
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.franja-institucion .subtitulo {
+    color: #bedbfc;
+}
+
+.franja-institucion h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.franja-institucion p {
+    color: #dbe6f3;
+    font-size: 13px;
+    max-width: 800px;
+}
+
+/* =========================================
+   13. ACCESO A LA COMUNIDAD
+========================================= */
+
+.acceso-comunidad {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 25px 0;
+}
+
+.acceso-comunidad h2 {
+    font-size: 20px;
+    color: var(--azul-oscuro);
+    margin-bottom: 5px;
+}
+
+.acceso-comunidad p {
+    color: var(--gris);
+    font-size: 12px;
+    max-width: 700px;
+}
+
+/* =========================================
+   14. PIE DE PÁGINA
+========================================= */
+
+.pie-pagina {
+    background: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 25px 0;
+}
+
+.pie-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.pie-identidad {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.escudo-pie {
+    width: 43px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.pie-identidad h2 {
+    font-size: 13px;
+}
+
+.pie-identidad p,
+.copyright {
+    color: #cbd8e8;
+    font-size: 11px;
+}
+
+/* =========================================
+   15. TABLETAS
+========================================= */
+
+@media (max-width: 900px) {
+    .menu a {
+        padding: 0 16px;
+    }
+
+    .evento-informacion {
+        padding: 23px;
+    }
+
+    .evento-informacion h3 {
+        font-size: 22px;
+    }
+
+    .rejilla-eventos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rejilla-galeria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   16. CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+    .contenedor {
+        width: 92%;
+    }
+
+    .encabezado-contenido {
+        min-height: 85px;
+        gap: 10px;
+    }
+
+    .identidad {
+        gap: 10px;
+    }
+
+    .escudo {
+        width: 49px;
+        height: 58px;
+    }
+
+    .identidad-texto h1 {
+        font-size: 14px;
+    }
+
+    .identidad-texto p {
+        font-size: 11px;
+    }
+
+    .boton-login {
+        padding: 9px 10px;
+        font-size: 11px;
+    }
+
+    .banner {
+        height: 225px;
+    }
+
+    .banner-texto {
+        padding-bottom: 20px;
+    }
+
+    .banner-texto h2 {
+        font-size: 24px;
+    }
+
+    .banner-texto p {
+        font-size: 12px;
+    }
+
+    .menu {
+        width: 100%;
+        min-height: 53px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+    }
+
+    .menu a {
+        padding: 0 16px;
+        font-size: 12px;
+    }
+
+    .contenido-principal {
+        padding-top: 22px;
+        padding-bottom: 30px;
+    }
+
+    .bienvenida {
+        grid-template-columns: 1fr;
+        padding: 23px;
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+
+    .bienvenida h2 {
+        font-size: 25px;
+    }
+
+    .bienvenida-icono {
+        min-height: 105px;
+    }
+
+    .bienvenida-icono strong {
+        font-size: 22px;
+    }
+
+    .titulo-seccion {
+        align-items: start;
+    }
+
+    .titulo-seccion h2 {
+        font-size: 21px;
+    }
+
+    .estado-evento,
+    .texto-auxiliar {
+        display: none;
+    }
+
+    .evento-destacado {
+        grid-template-columns: 1fr;
+    }
+
+    .evento-imagen,
+    .evento-imagen img {
+        min-height: 0;
+        height: 215px;
+    }
+
+    .evento-informacion {
+        padding: 21px;
+    }
+
+    .evento-informacion h3 {
+        font-size: 22px;
+    }
+
+    .rejilla-eventos {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta > img {
+        height: 205px;
+    }
+
+    .rejilla-galeria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .rejilla-galeria img {
+        height: 130px;
+    }
+
+    .rejilla-comunicados {
+        grid-template-columns: 1fr;
+    }
+
+    .franja-institucion {
+        padding: 23px;
+    }
+
+    .franja-institucion h2 {
+        font-size: 21px;
+    }
+
+    .acceso-comunidad {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .pie-contenido {
+        align-items: start;
+        flex-direction: column;
+    }
+}
