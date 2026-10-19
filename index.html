@@ -10,6 +10,21 @@
     <title>Portal Institucional | Instituto 4 de Septiembre</title>
 
     <link rel="stylesheet" href="estilos.css">
+
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+      window.OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "72034253-250b-4fb4-ad99-70e0eef8605b",
+          serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
+          serviceWorkerParam: {
+            scope: "/portal-instituto/"
+          }
+        });
+      });
+    </script>
 </head>
 
 <body>
@@ -22,6 +37,7 @@
                 <img src="img/escudo.png"
                      alt="Escudo del Instituto"
                      class="escudo">
+			</a>
 
                 <div class="identidad-texto">
                     <h1>Instituto 4 de Septiembre de 1964</h1>
@@ -406,44 +422,28 @@
     </footer>
 
 
+
 <script>
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
 document.getElementById("activar-notificaciones")
-    .addEventListener("click", async function () {
+    .addEventListener("click", function() {
+        window.OneSignalDeferred.push(async function(OneSignal) {
+            const estado = document.getElementById("estado-notificaciones");
 
-        const estado = document.getElementById("estado-notificaciones");
+            try {
+                await OneSignal.Slidedown.promptPush();
 
-        if (!("Notification" in window)) {
-            estado.textContent =
-                "Tu navegador no admite estas notificaciones.";
-            return;
-        }
-
-        if (!window.isSecureContext) {
-            estado.textContent =
-                "Abre el portal mediante su dirección HTTPS.";
-            return;
-        }
-
-        let permiso = Notification.permission;
-
-        if (permiso === "default") {
-            permiso = await Notification.requestPermission();
-        }
-
-        if (permiso === "granted") {
-            new Notification("Instituto 4 de Septiembre", {
-                body: "¡Esta es una prueba de notificación para la Feria de Informática!",
-                icon: "img/escudo.png"
-            });
-
-            estado.textContent =
-                "Prueba enviada al navegador. Revisa si apareció el aviso.";
-        } else {
-            estado.textContent =
-                "Las notificaciones están bloqueadas. Revisa los permisos del navegador.";
-        }
+                estado.textContent =
+                    "Se ha solicitado activar las notificaciones. Sigue las indicaciones del navegador.";
+            } catch (error) {
+                console.error("Error al activar las notificaciones:", error);
+                estado.textContent =
+                    "No se pudo abrir la solicitud. Comprueba la configuración de OneSignal.";
+            }
+        });
     });
 </script>
 </body>
-
 </html>
+
