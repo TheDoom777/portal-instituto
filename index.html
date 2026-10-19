@@ -113,10 +113,20 @@
                         tendremos más información!
                     </p>
 
-                    <div class="datos-evento">
-                        <p><span>▦</span> Fecha: 23 de octubre</p>
-                        <p><span>⌖</span> Lugar: instalaciones del instituto</p>
-                    </div>
+                   
+<div class="datos-evento">
+    <p><span>▦</span> Fecha: 23 de octubre</p>
+    <p><span>⌖</span> Lugar: instalaciones del instituto</p>
+</div>
+
+<button type="button"
+        id="activar-notificaciones"
+        class="boton-notificacion">
+    🔔 Activar notificaciones
+</button>
+
+<p id="estado-notificaciones" role="status" aria-live="polite"></p>
+
 
          
                 </div>
@@ -395,5 +405,45 @@
         </div>
     </footer>
 
+
+<script>
+document.getElementById("activar-notificaciones")
+    .addEventListener("click", async function () {
+
+        const estado = document.getElementById("estado-notificaciones");
+
+        if (!("Notification" in window)) {
+            estado.textContent =
+                "Tu navegador no admite estas notificaciones.";
+            return;
+        }
+
+        if (!window.isSecureContext) {
+            estado.textContent =
+                "Abre el portal mediante su dirección HTTPS.";
+            return;
+        }
+
+        let permiso = Notification.permission;
+
+        if (permiso === "default") {
+            permiso = await Notification.requestPermission();
+        }
+
+        if (permiso === "granted") {
+            new Notification("Instituto 4 de Septiembre", {
+                body: "¡Esta es una prueba de notificación para la Feria de Informática!",
+                icon: "img/escudo.png"
+            });
+
+            estado.textContent =
+                "Prueba enviada al navegador. Revisa si apareció el aviso.";
+        } else {
+            estado.textContent =
+                "Las notificaciones están bloqueadas. Revisa los permisos del navegador.";
+        }
+    });
+</script>
 </body>
+
 </html>

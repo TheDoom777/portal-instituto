@@ -830,4 +830,27 @@ img {
         align-items: start;
         flex-direction: column;
     }
+
+.boton-notificacion {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #087eae;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.boton-notificacion:hover {
+    background-color: #065f86;
+}
+
+#estado-notificaciones {
+    margin-top: 10px;
+    color: #31516b;
+    font-size: 14px;
 }
