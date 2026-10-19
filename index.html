@@ -13,17 +13,25 @@
 
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
+     window.oneSignalInstance = null;
 
-      window.OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: "72034253-250b-4fb4-ad99-70e0eef8605b",
-          serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
-          serviceWorkerParam: {
-            scope: "/portal-instituto/"
-          }
-        });
-      });
+window.OneSignalDeferred.push(async function(OneSignal) {
+  try {
+    await OneSignal.init({
+      appId: "72034253-250b-4fb4-ad99-70e0eef8605b",
+      serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
+      serviceWorkerParam: {
+        scope: "/portal-instituto/"
+      }
+    });
+
+    window.oneSignalInstance = OneSignal;
+    console.log("OneSignal se inicializó correctamente.");
+
+  } catch (error) {
+    console.error("Error al inicializar OneSignal:", error);
+  }
+});
     </script>
 </head>
 
@@ -424,25 +432,50 @@
 
 
 <script>
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-
 document.getElementById("activar-notificaciones")
-    .addEventListener("click", function() {
-        window.OneSignalDeferred.push(async function(OneSignal) {
-            const estado = document.getElementById("estado-notificaciones");
+  .addEventListener("click", async function() {
 
-            try {
-                await OneSignal.Slidedown.promptPush();
+    const estado = document.getElementById("estado-notificaciones");
+    const boton = this;
+    const OneSignal = window.oneSignalInstance;
 
-                estado.textContent =
-                    "Se ha solicitado activar las notificaciones. Sigue las indicaciones del navegador.";
-            } catch (error) {
-                console.error("Error al activar las notificaciones:", error);
-                estado.textContent =
-                    "No se pudo abrir la solicitud. Comprueba la configuración de OneSignal.";
-            }
-        });
-    });
+    if (!OneSignal) {
+      estado.textContent =
+        "OneSignal todavía está cargando. Recarga la página e inténtalo de nuevo.";
+      return;
+    }
+
+    try {
+      if (!OneSignal.Notifications.isPushSupported()) {
+        estado.textContent =
+          "Este entorno no admite las notificaciones web. Abre el portal desde el icono de la pantalla de inicio.";
+        return;
+      }
+
+      boton.disabled = true;
+      estado.textContent = "Solicitando permiso de notificaciones...";
+
+      const permitido =
+        await OneSignal.Notifications.requestPermission();
+
+      if (permitido) {
+        estado.textContent =
+          "¡Permiso concedido! Las notificaciones están habilitadas.";
+      } else {
+        estado.textContent =
+          "No se concedió el permiso. Revisa los ajustes de notificaciones del dispositivo.";
+      }
+
+    } catch (error) {
+      console.error("Error al solicitar permiso:", error);
+
+      estado.textContent =
+        "No se pudo activar. Revisa la consola y la configuración de OneSignal.";
+
+    } finally {
+      boton.disabled = false;
+    }
+  });
 </script>
 </body>
 </html>
