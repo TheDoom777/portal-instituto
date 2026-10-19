@@ -12,27 +12,29 @@
     <link rel="stylesheet" href="estilos.css">
 
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-     window.oneSignalInstance = null;
 
-window.OneSignalDeferred.push(async function(OneSignal) {
-  try {
-    await OneSignal.init({
-      appId: "72034253-250b-4fb4-ad99-70e0eef8605b",
-      serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
-      serviceWorkerParam: {
-        scope: "/portal-instituto/"
-      }
-    });
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
 
-    window.oneSignalInstance = OneSignal;
-    console.log("OneSignal se inicializó correctamente.");
+  window.OneSignalDeferred.push(async function(OneSignal) {
+    try {
+      await OneSignal.init({
+        appId: "72034253-250b-4fb4-ad99-70e0eef8605b",
+        serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
+        serviceWorkerParam: {
+          scope: "/portal-instituto/"
+        }
+      });
 
-  } catch (error) {
-    console.error("Error al inicializar OneSignal:", error);
-  }
-});
-    </script>
+      window.oneSignalInstance = OneSignal;
+      console.log("OneSignal se inicializó correctamente.");
+
+    } catch (error) {
+      console.error("Error al inicializar OneSignal:", error);
+    }
+  });
+</script>
+
 </head>
 
 <body>
