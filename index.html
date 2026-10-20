@@ -469,71 +469,88 @@
     "></p>
 </div>
 
+
 <script>
-(function () {
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+window.OneSignalDeferred.push(function (OneSignal) {
     const boton = document.getElementById("activar-notificaciones");
     const estado = document.getElementById("estado-notificaciones");
+
+    if (!boton || !estado) return;
 
     function mostrarEstado(mensaje) {
         estado.textContent = mensaje;
         estado.style.display = "block";
     }
 
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-
-    boton.addEventListener("click", function () {
+    boton.addEventListener("click", async function () {
         boton.disabled = true;
-        boton.style.opacity = "0.7";
         boton.textContent = "Conectando...";
+        estado.style.display = "none";
 
-        window.OneSignalDeferred.push(async function (OneSignal) {
-            try {
-                if (!("Notification" in window)) {
-                    mostrarEstado(
-                        "Este navegador no admite notificaciones web."
-                    );
-                    return;
-                }
+        let terminado = false;
 
-                if (Notification.permission === "denied") {
-                    mostrarEstado(
-                        "Las notificaciones están bloqueadas. Permitilas en la configuración del navegador."
-                    );
-                    return;
-                }
-
-                if (Notification.permission !== "granted") {
-                    await OneSignal.Notifications.requestPermission();
-                }
-
-                if (Notification.permission !== "granted") {
-                    mostrarEstado(
-                        "No se concedió el permiso. Revisá los ajustes de notificaciones."
-                    );
-                    return;
-                }
-
-                await OneSignal.User.PushSubscription.optIn();
-
+        const limite = setTimeout(function () {
+            if (!terminado) {
                 mostrarEstado(
-                    "Solicitud realizada. Comprobá tu suscripción en OneSignal."
+                    "OneSignal está tardando demasiado. Recargá el portal e intentá de nuevo."
                 );
-                boton.textContent = "🔔 Notificaciones activadas";
-            } catch (error) {
-                console.error("Error al activar notificaciones:", error);
-                mostrarEstado(
-                    "No se pudo activar. Abrí el portal desde su icono de inicio e intentá de nuevo."
-                );
-            } finally {
+                boton.textContent = "Reintentar activación";
                 boton.disabled = false;
-                boton.style.opacity = "1";
-                if (boton.textContent === "Conectando...") {
-                    boton.textContent = "🔔 Activar notificaciones";
-                }
             }
-        });
+        }, 12000);
+
+        try {
+            if (!("Notification" in window)) {
+                mostrarEstado(
+                    "Este entorno no admite notificaciones web."
+                );
+                return;
+            }
+
+            if (Notification.permission === "denied") {
+                mostrarEstado(
+                    "El permiso está bloqueado. Revisá los ajustes de notificaciones del iPhone."
+                );
+                return;
+            }
+
+            if (Notification.permission !== "granted") {
+                await OneSignal.Notifications.requestPermission();
+            }
+
+            if (Notification.permission !== "granted") {
+                mostrarEstado(
+                    "No se concedió el permiso. Revisá la configuración del iPhone."
+                );
+                return;
+            }
+
+            await OneSignal.User.PushSubscription.optIn();
+
+            mostrarEstado(
+                "Permiso concedido. Comprobá que el iPhone aparezca suscrito en OneSignal."
+            );
+            boton.textContent = "Notificaciones configuradas";
+
+        } catch (error) {
+            console.error("Error de OneSignal:", error);
+            mostrarEstado(
+                "No se pudo completar la activación. Recargá el portal e intentá de nuevo."
+            );
+        } finally {
+            terminado = true;
+            clearTimeout(limite);
+            boton.disabled = false;
+
+            if (boton.textContent === "Conectando...") {
+                boton.textContent = "🔔 Activar notificaciones";
+            }
+        }
     });
-})();
+});
 </script>
+
 </body>
 </html>
