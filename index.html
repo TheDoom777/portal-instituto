@@ -12,34 +12,32 @@
 
     <link rel="stylesheet" href="estilos.css">
 
+    <!-- ONESIGNAL: NOTIFICACIONES PUSH -->
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 
-<!-- ONESIGNAL: NOTIFICACIONES PUSH -->
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
 
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
+      window.OneSignalDeferred.push(async function (OneSignal) {
+        try {
+          await OneSignal.init({
+            appId: "d1a88211-f2f1-4f67-b452-67864e6d99a0",
+            safari_web_id: "web.onesignal.auto.4924b4f0-134c-425c-876d-dc71d8371c02",
+            serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
+            serviceWorkerParam: {
+              scope: "/portal-instituto/"
+            },
+            notifyButton: {
+              enable: true
+            }
+          });
 
-  window.OneSignalDeferred.push(async function (OneSignal) {
-    try {
-      await OneSignal.init({
-        appId: "d1a88211-f2f1-4f67-b452-67864e6d99a0",
-        safari_web_id: "web.onesignal.auto.4924b4f0-134c-425c-876d-dc71d8371c02",
-        serviceWorkerPath: "/portal-instituto/OneSignalSDKWorker.js",
-        serviceWorkerParam: {
-          scope: "/portal-instituto/"
-        },
-        notifyButton: {
-          enable: true
+          console.log("OneSignal se inicializó correctamente.");
+        } catch (error) {
+          console.error("Error al inicializar OneSignal:", error);
         }
       });
-
-      console.log("OneSignal se inicializó correctamente.");
-    } catch (error) {
-      console.error("Error al inicializar OneSignal:", error);
-    }
-  });
-</script>
-
+    </script>
 </head>
 
 <body>
@@ -331,7 +329,7 @@
 
                 <!-- EVENTO 11: DÍA DEL PADRE -->
                 <a href="eventos/diapadre.html" class="tarjeta">
-                    <img src="img/Captura de pantalla 2026-10-12 214601.png"
+                    <img src="img/diapadre/Captura de pantalla 2026-10-19 211400.png"
                          alt="Celebración del Día del Padre">
 
                     <div class="tarjeta-contenido">
@@ -435,122 +433,6 @@
 
         </div>
     </footer>
-
-<!-- BOTÓN PERSONALIZADO PARA ACTIVAR NOTIFICACIONES -->
-<div id="contenedor-notificaciones" style="
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 9999;
-">
-    <button id="activar-notificaciones" type="button" style="
-        border: none;
-        border-radius: 30px;
-        padding: 14px 20px;
-        background: #087f8c;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.22);
-    ">
-        🔔 Activar notificaciones
-    </button>
-
-    <p id="estado-notificaciones" role="status" style="
-        display: none;
-        max-width: 260px;
-        padding: 10px;
-        border-radius: 8px;
-        background: #ffffff;
-        color: #17323a;
-        font-size: 13px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    "></p>
-</div>
-
-
-<script>
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-
-window.OneSignalDeferred.push(function (OneSignal) {
-    const boton = document.getElementById("activar-notificaciones");
-    const estado = document.getElementById("estado-notificaciones");
-
-    if (!boton || !estado) return;
-
-    function mostrarEstado(mensaje) {
-        estado.textContent = mensaje;
-        estado.style.display = "block";
-    }
-
-    boton.addEventListener("click", async function () {
-        boton.disabled = true;
-        boton.textContent = "Conectando...";
-        estado.style.display = "none";
-
-        let terminado = false;
-
-        const limite = setTimeout(function () {
-            if (!terminado) {
-                mostrarEstado(
-                    "OneSignal está tardando demasiado. Recargá el portal e intentá de nuevo."
-                );
-                boton.textContent = "Reintentar activación";
-                boton.disabled = false;
-            }
-        }, 12000);
-
-        try {
-            if (!("Notification" in window)) {
-                mostrarEstado(
-                    "Este entorno no admite notificaciones web."
-                );
-                return;
-            }
-
-            if (Notification.permission === "denied") {
-                mostrarEstado(
-                    "El permiso está bloqueado. Revisá los ajustes de notificaciones del iPhone."
-                );
-                return;
-            }
-
-            if (Notification.permission !== "granted") {
-                await OneSignal.Notifications.requestPermission();
-            }
-
-            if (Notification.permission !== "granted") {
-                mostrarEstado(
-                    "No se concedió el permiso. Revisá la configuración del iPhone."
-                );
-                return;
-            }
-
-            await OneSignal.User.PushSubscription.optIn();
-
-            mostrarEstado(
-                "Permiso concedido. Comprobá que el iPhone aparezca suscrito en OneSignal."
-            );
-            boton.textContent = "Notificaciones configuradas";
-
-        } catch (error) {
-            console.error("Error de OneSignal:", error);
-            mostrarEstado(
-                "No se pudo completar la activación. Recargá el portal e intentá de nuevo."
-            );
-        } finally {
-            terminado = true;
-            clearTimeout(limite);
-            boton.disabled = false;
-
-            if (boton.textContent === "Conectando...") {
-                boton.textContent = "🔔 Activar notificaciones";
-            }
-        }
-    });
-});
-</script>
 
 </body>
 </html>
