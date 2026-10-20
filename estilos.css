@@ -845,6 +845,24 @@ img {
     transition: background-color 0.2s ease;
 }
 
+/* =========================================
+   17. BOTÓN DE NOTIFICACIONES
+========================================= */
+
+.boton-notificacion {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #087eae;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
 .boton-notificacion:hover {
     background-color: #065f86;
 }
@@ -853,4 +871,34 @@ img {
     margin-top: 10px;
     color: #31516b;
     font-size: 14px;
+}
+
+/* =========================================
+   18. CORRECCIÓN DEL ENCABEZADO
+========================================= */
+
+.encabezado-contenido {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.identidad {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.identidad-texto {
+    text-align: left;
+}
+
+.identidad-texto h1,
+.identidad-texto p {
+    margin-left: 0;
+    text-align: left;
 }
